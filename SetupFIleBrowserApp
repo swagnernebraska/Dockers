@@ -1,0 +1,27 @@
+This Docker Compose configuration sets up Filebrowser with the following key components:
+
+1) It uses the latest Filebrowser image.
+2) The container is named "filebrowser".
+3) Three volumes are mapped:
+   /home:/srv: This maps your local /home directory to /srv in the container, where Filebrowser will manage files1.
+   ./filebrowser.db:/database/filebrowser.db: This stores the Filebrowser database file12.
+    ./settings.json:/config/settings.json: This maps the settings file for Filebrowser12.
+4) Environment variables PUID and PGID are set to match the current user's ID and group ID for proper file permissions12.
+5) Port 8080 on the host is mapped to port 80 in the container12.
+6) The container is set to restart unless stopped manually.
+
+Before running this configuration, make sure to create the filebrowser.db and settings.json files in the same directory as your docker-compose.yml file2. You can create these files using the following commands:
+touch filebrowser.db
+touch settings.json
+
+For JSON
+{
+  "port": 80,
+  "baseURL": "",
+  "address": "",
+  "log": "stdout",
+  "database": "/database/filebrowser.db",
+  "root": "/srv"
+}
+
+After setting up these files, you can start Filebrowser by running docker-compose up -d in the directory containing your docker-compose.yml file12.
