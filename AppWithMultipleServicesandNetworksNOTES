@@ -1,0 +1,9 @@
+networks: Defines a custom network named app-network.
+
+app: Uses a pre-built image, exposes port 8080, and mounts a local directory as a volume.
+
+redis: Uses the Redis Alpine image and connects to the custom network.
+
+nginx: Uses the Nginx image, exposes port 80, connects to the custom network, and mounts a local Nginx configuration file.
+
+depends_on is used to make sure the app service starts before the nginx service.
