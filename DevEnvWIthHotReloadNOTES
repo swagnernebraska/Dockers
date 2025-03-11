@@ -1,0 +1,7 @@
+Dockerfile.dev: A Dockerfile specifically for development, installing dependencies and setting up hot reloading.
+
+volumes:
+Mounts the current directory into the container, allowing code changes on the host to reflect in the container.
+Mounts an anonymous volume for node_modules to avoid conflicts with the host's node_modules.
+
+environment: Sets the CHOKIDAR_USEPOLLING environment variable, which is often needed for hot reloading in Docker containers on certain operating systems.
