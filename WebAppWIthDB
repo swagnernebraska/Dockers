@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    depends_on:
+      - app
+  app:
+    image: python:3.9
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    command: python app.py
+    environment:
+      - DB_HOST=db
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
