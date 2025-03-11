@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  frontend:
+    image: node:16
+    ports:
+      - "3000:3000"
+    networks:
+      - webnet
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: npm start
+  backend:
+    image: python:3.9
+    ports:
+      - "5000:5000"
+    networks:
+      - webnet
+      - datanet
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    command: python app.py
+    environment:
+      - DB_HOST=db
+  db:
+    image: postgres:13
+    networks:
+      - datanet
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+networks:
+  webnet:
+  datanet:
