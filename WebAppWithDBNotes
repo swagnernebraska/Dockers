@@ -1,0 +1,15 @@
+version: "3.8": Specifies the Docker Compose file format version.
+
+services: Defines the services (containers) to run.
+web:
+build: Specifies how to build the web application image (using a Dockerfile in the current directory).
+ports: Maps port 3000 on the host to port 3000 in the container.
+depends_on: Ensures the database service starts before the web service.
+
+environment: Sets environment variables for the web application.
+
+db:
+image: Uses the official PostgreSQL 13 image.
+environment: Sets environment variables for the database.
+volumes: Mounts a named volume to persist database data.
+volumes: Defines the named volume for the database.
